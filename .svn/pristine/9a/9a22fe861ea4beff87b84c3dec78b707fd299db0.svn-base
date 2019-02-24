@@ -1,0 +1,41 @@
+<ion-content no-padding class="main-content">
+  <div *ngIf="page_index == 0">
+    <div class="banner"><img src="../assets/icon/certificate/banner.png"></div>
+    <div class="notes">
+        <div>尊敬的各位用户：</div>
+        <div>为净化电信市场，遏制电信诈骗高发趋势，做好信息安全工作，依照国家工信部<span>《工业和信息化部关于进一步做好防范打击通讯信息诈骗相关工作的通知》</span>（工信部网安函〔2015〕601 号）、公安部<span>《关于印发<防范治理电信网络新型违法犯罪工作机制>的通知》</span>（公刑〔2016〕987号）要求，所有通讯卡，须使用人进行实名制登记认证。</div>
+        <div>为保障您的使用权益，请各位已充值激活使用的用户，于9月31日前尽快完成实名登记。</div>
+        <div>
+          <button ion-button full class="start-auth" (click)="StartAuth()">开始认证</button>
+        </div>
+    </div>
+  </div>
+  <div *ngIf="page_index == 1">
+   <div class="group-title">基本信息认证<span>(必填)</span></div>
+    <div class="basic-info">      
+      <div><span>SIM卡号</span><ion-input placeholder="请输入您需要绑定的SIM卡号后8位" maxlength="18" [(ngModel)]="iccid"></ion-input></div>
+      <div><span>真实姓名</span><ion-input placeholder="请输入您的真实姓名" maxlength="16" [(ngModel)]="realname"></ion-input></div>
+      <div><span>身份证号</span><ion-input placeholder="请输入您的身份证号" maxlength="18" [(ngModel)]="id"></ion-input></div>
+    </div>
+    <div class="group-title">上传身份证证件照<span>(必填)</span></div>
+    <div class="id-content">      
+      <div class="upload-content" *ngFor="let id of ids">
+          <input class="file-upload" type="file" ng2FileSelect [uploader]="uploader" (change)="OnFileSelected($event, id)" multiple/>
+          <!--<input class="file-upload" type="file" ng2FileSelect (change)="OnFileSelected($event, id)" [uploader]="uploader" multiple />-->
+           <div class="imageouter">
+              <img [src]="GetSelectedImg(id)">
+           </div>
+      </div>        
+    </div>
+    <div class="remark">  
+      <div class="group-title offset">注意事项</div>
+      <div><div class="ionouter"><ion-badge>1</ion-badge></div>必须是原件<span>彩色</span></div>
+      <div><div class="ionouter"><ion-badge>2</ion-badge></div>拍摄时确保身份证<span>边框完整，字体清晰，亮度均匀</span></div>
+      <div><div class="ionouter"><ion-badge>3</ion-badge></div>持证人须<span>免冠</span>五官<span>清晰可见</span></div>
+      <div><div class="ionouter"><ion-badge>4</ion-badge></div>证件<span>有效</span>,照片内容<span>真实</span></div>
+    </div>
+    <div class="button-content">
+      <button ion-button full (click)="Submit()">提交审核</button>
+    </div>
+  </div>
+</ion-content>

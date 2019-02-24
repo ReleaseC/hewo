@@ -1,0 +1,43 @@
+<ion-content padding>
+    <!--<div *ngIf="page_index == 0">
+   <div class="banner"><img src="../assets/icon/changecard/banner.png"></div>
+    <div class="notes">
+        <div>
+          <button ion-button full class="start-apply" (click)="StartApply()">立即申请</button>
+        </div>
+         <div>提交申请后添加客服微信hewo1001领取10元红包</div> 
+    </div>
+  </div>-->
+  <div *ngIf="page_index == 1">
+   <div class="group-title">收货信息</div>
+    <div class="basic-info">      
+      <div><span>收货姓名</span><ion-input placeholder="请输入收货人姓名" maxlength="18" [(ngModel)]="recname"></ion-input></div>
+      <div><span>联系方式</span><ion-input placeholder="请输入收货人手机号" maxlength="16" [(ngModel)]="rectel"></ion-input></div>
+      <div><span>收货地址</span><ion-input placeholder="请输入准确的收货地址" [(ngModel)]="recaddress" style="border-bottom: none"></ion-input></div>
+    </div>
+    <div class="group-title">流量卡信息</div>
+      <div class="basic-info">    
+        <div><span>ICCID号</span><ion-input placeholder="请输入ICCID号后8位数字(不含末尾字母)" maxlength="8" [(ngModel)]="reciccid"></ion-input></div>
+      </div>
+     <div class="remark">     
+      <div><div class="ionouter"><ion-badge>1</ion-badge></div>若取下MiFi的电池后，设备无封贴，请直接取出SIM卡填写ICCID号后8位数字(不含末位字母)</div>
+      <div><div class="ionouter"><ion-badge>2</ion-badge></div>若取下MiFi的电池后，设备有封贴，请直接填写封贴上的识别码，如下图所示</div>      
+    </div>  
+     <div class="uploader1"><img src="../assets/icon/changecard/upload1.png"></div>
+    <div class="group-title">上传SIM卡或封贴识别码照片</div>
+    <div class="id-content">      
+      <div class="upload-content" *ngFor="let id of ids">
+          <input class="file-upload" type="file" ng2FileSelect [uploader]="uploader" (change)="OnFileSelected($event, id)" multiple/>
+          <div class="imageouter">
+             <img [src]="GetSelectedImg(id)">
+          </div>
+      </div>        
+    </div>
+    <div class="remark">  
+      <div><div class="ionouter"><ion-badge>1</ion-badge></div>请务必保证上传图片中的识别码(有封贴)或SIM卡ICCI号码(无封帖)清晰可见</div>
+    </div>
+    <div class="button-content">
+      <button ion-button full (click)="Submit()">提交审核</button>
+    </div>
+  </div>
+</ion-content>

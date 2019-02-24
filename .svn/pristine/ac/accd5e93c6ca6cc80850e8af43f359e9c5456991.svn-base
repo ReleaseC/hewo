@@ -1,0 +1,112 @@
+import { Component } from '@angular/core';
+import { LoadingController, IonicApp, App, MenuController } from 'ionic-angular';
+import { PlatformLocation } from '@angular/common';
+import { TAuth }  from '../providers/auth';
+
+@Component({
+  templateUrl: 'app.html'
+})
+
+export class MyApp
+{
+  rootPage = undefined;
+  loader = undefined;
+
+  constructor(
+    private Auth: TAuth,
+    private loadingCtrl: LoadingController,
+    private _app: App,
+    private _ionicApp: IonicApp,
+    private _menu: MenuController,
+    location: PlatformLocation)
+  {
+    this.Loading();
+    Auth.GetRequestParam(location.search);
+    //location属性,声明定义虽然未声明,实际有结果内容    
+    // let src = location.location.hostname;
+    // let imgsrc = src.split('.');
+    // localStorage.setItem('imgsrc', imgsrc[0])
+    this.Auth.login().then(
+      data => localStorage.setItem('token', data.token),
+      error => console.log(error)
+    );
+    //判断是否微信用户
+    this.Auth.CheckUser().then(
+      data => this.SetStartPage(data),
+      error => console.log(error)
+    )
+    
+  }
+
+  //初始化 调用请求是否为新用户的方法 customer/openid
+  SetStartPage(data)
+  {
+    console.log("<<<<<<<<<<<<<<<<<<<<Set Start Page");
+    console.log(data);
+
+    switch(data.status)
+    {
+      case -1:
+        this.rootPage = 'CodePage';
+        break;
+
+      case 0:
+        this.rootPage = 'RegisterPage';
+        break;
+
+      case 1:
+        //判断是否有iccid
+        let state = parseInt(this.Auth.state);
+        if (this.Auth.iccid != null)
+        {
+          let state = parseInt(this.Auth.state);
+          if (state == 1)
+          {
+            this.rootPage = 'ActionPage';
+          }
+          else if (state == 0)
+          {
+            this.rootPage = 'SrechargePage';
+          }
+        }
+        else
+        {
+          if (state == 2)
+          {
+            this.rootPage = 'ChangecardPage';
+            //localStorage.setItem('changeiccid', this.Auth.iccid);
+          }
+          else {
+            this.rootPage = 'HomePage'; //首页
+          }
+          
+        }
+    }
+
+    this.FreeLoading();
+  }
+
+  Loading(context="数据加载中", duration=5000)
+  {
+      if (this.loadingCtrl != undefined)
+      {
+          this.loader = this.loadingCtrl.create(
+              {
+                  content: context,
+                  duration: duration
+              }
+          );
+          this.loader.present();
+      }
+  }
+
+  FreeLoading()
+  {
+      if (this.loader != undefined)
+      {
+          this.loader.dismiss();
+      }
+  }
+
+}
+

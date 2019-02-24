@@ -1,0 +1,17 @@
+<ion-content no-padding class="main-content">
+    <div class="banner">
+      <img src="../assets/icon/changeup/banner.png" >
+    </div>
+    <div class="textgroup">
+      <img src="../assets/icon/changeup/text1.png" >
+    </div>
+     <div class="textgroup"> 
+      <img src="../assets/icon/changeup/text2.png" style="width: 17rem">
+    </div>
+    <div class="bottom">
+      <div class="code">
+        <img src="../assets/icon/code.jpg">
+      </div>
+      <div class="text">长按识别二维码添加运营商客服秒速更新</div>
+    </div>
+</ion-content>

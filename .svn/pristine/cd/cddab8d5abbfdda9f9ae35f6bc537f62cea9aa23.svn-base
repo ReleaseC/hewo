@@ -1,0 +1,25 @@
+<ion-content padding>
+<div *ngIf="rechargestate == 0" class="btnload">
+    <div class="icontext" style="padding: 5%;">
+        <!--<ion-spinner item-start name="dots"></ion-spinner>  -->
+         <img src="../../assets/icon/load1.gif" style="padding-left: 15%;padding-right: 15%">
+           <ion-spinner item-start name="dots"></ion-spinner>  
+         <div class="text">正在充值</div>
+    </div>
+</div>
+<div *ngIf="rechargestate == 1" class="btnload" style="display: block">
+     <img src="../../assets/icon/success.png" >
+    <!--<div class="icontext" style="padding: 5%;">-->
+        <!--<img src="../../assets/icon/ku.png" style="padding:3.5%">-->
+        <!--<div style="margin: 0 auto; color:#888;;font-size: 1.8rem;line-height: 2rem;font-weight: bold">充值成功</div>
+        <button ion-button (click) = "ToHome()" outline>完成</button>
+        <div class="tel">拨打官方客服电话:<span style="font-weight: bold">4000999812</span></div>-->
+    <!--</div>-->
+</div>
+<div *ngIf="rechargestate == 2" class="btnload">
+      <div class="icontext" style="padding: 5%;">
+        <img src="../../assets/icon/smile.png" style="padding:3.5%">
+        <div style="margin: 0 auto; color:#888;;font-size: 1.8rem;line-height: 2rem;font-weight: bold">充值成功</div>
+    </div>
+</div>
+</ion-content>

@@ -1,0 +1,86 @@
+<ion-content no-padding class="content-bg">
+    <div class="content-input" style="padding:0.5rem">
+      <ion-row nowrap class="input-round" style="color:transparent;padding:0">
+        <ion-col col-10>
+          <div class="inputtop">
+              <img src="../../assets/images/sim-@2x.png" style="width:25x;height:25px;margin:0 5px">
+              <div>
+                  <ion-input class="text-input" type="text" placeholder="请输入ICCID号" maxlength="20" [(ngModel)]="numCard" (ngModelChange)="getItems($event)"></ion-input>
+              </div>
+          </div>
+            
+        </ion-col>
+        <ion-col col-2>
+            <div class="inputright">
+              <button class="search-button" (click)="SearchIccid()">查询</button>
+            </div>
+        </ion-col>
+      </ion-row>
+      <ion-row  style="padding:0.8rem">
+        <div class="input-histroy" *ngIf="CanShowHistroy()">
+          <ion-row *ngFor="let item of show_items" [ngClass]="item.style" (click)="SelectItem(item.text)">{{item.text}}</ion-row>
+        </div>
+      </ion-row>
+    </div>
+
+    <ion-row style="margin-top: 15%" justify-content-center *ngIf="found">
+      <ion-col>
+        <div class="outer-rings left-top"   [class.opacity-img]="animateIninitial">
+          <div class="texts" style="left:0;top:50%;color:#4CB0DB">{{iccid.type}}</div>
+          <img src="assets/images/branch_cc@2x.png">
+        </div>
+        <div class="outer-rings left-bottom" [class.opacity-img]="animateIninitial">
+          <div class="texts" 
+              style="width: 90%;
+              bottom: 125%;
+              color: #4CB0DB;
+              padding-top: 3.5%;
+              text-align: right;">{{iccid.left_day}}服务到期</div>
+          <img src="assets/images/branch_C@2x.png">
+        </div>
+      </ion-col>
+      <ion-col col-5>
+        <div class="inner-box" >
+          <ul id="inner-box" *ngIf="cardtype == 0">
+            <li>剩余流量</li>
+            <li class="centerbold">{{flow}}MB</li>
+          </ul>
+          <ul id="inner-box" *ngIf="cardtype == 1">
+            <li>剩余时间</li>
+            <li class="centerbold">{{iccid.left_day}}</li>
+          </ul>
+        </div>
+        <div class="loading-items" [class.rotate-items]="animateIninitial"></div>
+      </ion-col>
+      <ion-col>
+        <div class="outer-rings right-top" [class.opacity-img]="animateIninitial">
+          <div class="stateouter">
+              <div class="texts" style="bottom: 35%;top: auto;color:#4CB0DB">状态:{{iccid.state}}</div>
+          </div>
+        </div>
+        <div class="outer-rings right-bottom" [class.opacity-img]="animateIninitial"  *ngIf="cardtype == 0">
+          <img src="assets/images/branch@2x.png">
+          <div class="texts addcolor">已使用{{iccid.used_flow}}M</div>
+        </div>
+        <div class="outer-rings right-bottom" [class.opacity-img]="animateIninitial"  *ngIf="cardtype == 1">
+          <img src="assets/images/branch@2x.png">
+          <div class="texts addcolor">已使用{{iccid.used_flow}}天</div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="found" style="margin-top: 15%">
+      <ion-col col-1></ion-col>
+      <ion-col col-10>
+        <ion-row justify-content-center class="footer-hint">点击绑定可将流量卡绑定至个人中心</ion-row>
+        <ion-row justify-content-center class="footer-hint">查询结果及充值可能稍有延迟， 请耐心等待</ion-row>
+        <ion-row justify-content-center class="footer-hint hint-text" style="margin-top: 4.5%;line-height: 1.6rem;">官方客服微信：<span> hewo1001</span></ion-row>
+        <ion-row justify-content-center class="footer-hint hint-text" >官方客服电话：<span style="line-height: 1.6rem;">400-0999812</span></ion-row>
+        <ion-row nowrap class="footer-content">
+          <button ion-button primary outline (click)="bindingDevice()" style="background:black" class="footer-button">绑定</button>
+          <button ion-button primary outline (click)="toPay()" style="background:black" class="footer-button">充值</button>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+    <ion-col></ion-col>
+</ion-content>
+

@@ -1,0 +1,30 @@
+<ion-content no-padding class="main-content">
+  <div *ngIf="page_index == 0">
+    <div class="banner">
+      <div class="imgtop">
+      <img src="../assets/icon/point.png">
+      </div>
+        <div class="top_notes">
+          <div>您的 SMI 卡使用异常</div>
+          <div>请联系官方客服排查问题并领取10元红包补贴</div>
+        </div>
+    </div>
+    <div class="remark">  
+       <div class="notes">
+          <div style="font-weight: bold">您可以</div>
+      </div>
+        <div class="ionouter"><ion-badge>1</ion-badge></div>
+        <div class="outerimg">
+           <img src="../assets/icon/code.jpg">           
+        </div>
+      <div class="notes">
+        <div>长按识别二维码添加运营商客服</div>
+      </div>
+      <div style="margin-top: 2rem; align-items: center;">
+        <div class="ionouter" style="line-height: 1.5rem">
+          <ion-badge>2</ion-badge>
+        </div>拨打官方客服电话<span>4000999812</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

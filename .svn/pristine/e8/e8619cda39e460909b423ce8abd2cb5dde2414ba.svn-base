@@ -1,0 +1,126 @@
+page-certification {
+ .flex-content {
+        display: flex;
+        justify-content: center;
+        align-items: center;        
+    }
+
+    .main-content {
+        //background-image: url("../assets/small_bk.png");
+        //color: white;        
+    }
+
+    .notes {
+        font-size: 1.6rem;
+        color: black;
+        padding: 4% 5%;
+        
+        div {
+            margin-bottom: 3%;
+        }
+
+        span {
+            font-weight: bold;
+        }
+
+        .start-auth {
+            border-radius: 5px;
+            margin-top: 8%;
+            margin-left: 10%;
+            width: 80%;
+            font-size: 1.8rem;
+        }
+    }
+
+    .group-title {
+        background-color: #F5F5F5;            
+        font-weight: bold;
+        height: 3rem;
+        padding-left: 5%;
+        display: flex;
+        font-size: 1.5rem;
+        align-items: center;
+        span {
+            color: red;
+        }
+    }
+
+    .basic-info {
+        padding-left: 5%;
+        margin-bottom: 2%;
+        div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        ion-input {
+            border-bottom: 1px solid lightgray;
+            margin-left: 2%;
+        }
+    }
+
+    .remark {
+        margin-top: 8%;
+        font-size: 1.2rem;
+        .offset {
+            margin-bottom: 3%;
+        }
+        
+        div {
+            display: flex;
+            padding-left: 5%;
+            margin: 1.5% 0;
+            span {
+                color: #54698D;
+            }
+
+             .ionouter{
+                width: 2.7rem;
+                height: 1.5rem;
+                padding: 0;
+                margin: 0;
+            }
+            ion-badge {
+                margin-right: 2%;                
+                font-size: 1.2rem;            
+                padding: 0.29rem;
+                border-radius: 50%;
+                width: 1.5rem;
+            }
+        }
+    }
+
+    .button-content {
+        margin-top: 5%;
+        margin-left: 5%;
+        margin-right: 5%;        
+        button {
+            height: 5rem;
+            font-size: 1.8rem;
+            border-radius: 5px;
+        }
+    }
+
+    .id-content {
+        padding: 0 9%;
+        .upload-content {     
+            height: 100%;         
+            margin-top: 8%;
+
+            img {
+                height: 100%;
+                width: 100%;
+                border-radius: 20px;
+            }
+        }
+       .imageouter{
+        }
+        .file-upload {
+            position: absolute;
+            opacity: 0;
+            height: 100%;
+            width: 100%;        
+        }    
+    }
+}

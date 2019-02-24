@@ -1,0 +1,160 @@
+import { Injectable } from '@angular/core';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import { const_data } from '../common/application-const';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/catch';
+
+
+@Injectable()
+export class TBasicService 
+{
+  constructor(public http: Http)
+  {
+    if (this.host_url == "" || this.logo_url == "")
+    {
+      this.GetHostName();
+    }    
+  }
+
+  GetHostName()
+  {
+    let hostname = localStorage.getItem('hewo_hostname');
+    console.log("hostname: " + hostname);
+
+    //hostname = 'sub1036m.iwoyi.cn';
+    if (hostname != undefined)
+    {
+      if (hostname == 'localhost')
+      {
+        this.host_url = const_data.host_url;
+        this.logo_url = const_data.logo_url;  
+      }
+      else {
+        let data = hostname.split('.');      
+        let logo_name = data[0];
+        let n = logo_name.length;
+        let server_name = logo_name;
+  
+        if (logo_name[n-1] == 'm')
+        {
+          server_name = logo_name.substring(0, n - 1);
+        }
+        
+        this.is_corp = (server_name == "qx") || (server_name == "sub23");
+        this.host_url = "http://" + server_name + ".iwoyi.cn:6888";
+        this.logo_url = "http://sub23m.iwoyi.cn/logo/" + logo_name + ".jpg";
+      }      
+    }
+    else {
+      this.host_url = const_data.host_url;
+      this.logo_url = const_data.logo_url;
+    }
+
+    console.log("is corp:" + this.is_corp);
+    console.log("host url:" + this.host_url);
+    console.log("logo url:" + this.logo_url);
+  }
+
+  CreateHeader(): any
+  {
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    let token = localStorage.getItem('token');
+    if (token)
+    {
+      headers.append('Authorization', token);
+    }
+
+    return new RequestOptions({headers: headers});
+  }
+
+  // Access(url: string)
+  // {
+  //   let apiURL = url + '?callback=JSONP_CALLBACK';
+  //   console.log(apiURL);
+  //   return this.jsonp.request(apiURL, {method: 'Get'});
+  // }
+
+  Get(uri: string): Promise<any>
+  {
+    let url = this.host_url + '/' + uri;
+    let options = this.CreateHeader();
+    // console.log(options)
+    return this.http.get(url, options)
+                    .toPromise()
+                    .then(this.extractData)
+                    .catch(this.handleError)
+  }
+
+  Post(data: any, uri?: string): Promise<any>
+  {
+    let url = this.host_url;
+    if (uri)
+    {
+        url = url + '/' + uri;
+    }
+
+    let options = this.CreateHeader();
+    return this.http.post(url, data, options)
+                    .toPromise()
+                    .then(this.extractData)
+                    .catch(this.handleError)
+  }
+
+  Put(data: any, uri?: string): Promise<any>
+  {
+    let url = this.host_url;
+    if (uri)
+    {
+        url = url + '/' + uri;
+    }
+
+    let options = this.CreateHeader();
+    return this.http.put(url, data, options)
+                    .toPromise()
+                    .then(this.extractData)
+                    .catch(this.handleError)
+  }
+
+  Delete(uri?: string): Promise<any>
+  {
+    let url = this.host_url;
+    if (uri)
+    {
+        url = url + '/' + uri;
+    }
+
+    let options = this.CreateHeader();
+    return this.http.delete(url, options)
+                    .toPromise()
+                    .then(this.extractData)
+                    .catch(this.handleError)
+  }
+
+  private extractData(res: Response)
+  {
+    let body = res.json();
+    return body;
+  }
+
+  private handleError(error: Response | any)
+  {
+    let errMsg: string;
+    if (error instanceof Response)
+    {
+      errMsg = `${error.status} - ${error.statusText}`;
+    }
+    else
+    {
+      errMsg = error.message ? error.message : error.toString();
+    }
+
+    //console.error(errMsg);
+    return Promise.reject(errMsg);
+  }
+
+  public host_url: string = "";
+  public logo_url: string = "";
+  public is_corp: boolean = true;
+}

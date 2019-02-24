@@ -1,0 +1,25 @@
+/**
+ * Created by Administrator on 2017/7/3/003.
+ */
+import { Component } from '@angular/core';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
+import { const_data } from '../../common/application-const';
+@IonicPage()
+@Component({
+  selector: 'page-code',
+  templateUrl: 'code.html'
+})
+
+export class CodePage
+{
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams)
+  {
+    //todo: 二维码图片链接，不能写死，要从服务端获取
+    // if(localStorage.getItem('imgsrc')!=null){
+    //   this.imgsrc = 'http://sub23m.iwoyi.cn/logo/'+localStorage.getItem('imgsrc')                                                                        
+    // }
+  }
+  private imgsrc = const_data.imgsrcm ;
+}

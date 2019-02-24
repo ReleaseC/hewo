@@ -1,0 +1,42 @@
+import { Component } from '@angular/core';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+
+
+@IonicPage()
+@Component({
+  selector: 'page-load',
+  templateUrl: 'load.html',
+})
+export class LoadPage {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+    this.times();
+    this.src = '../../assets/images/animation.gif?version='+this.nowtime+'"';
+  }
+
+  ionViewDidLoad() {
+  }
+
+  times(){
+    this.num = 60;
+    setInterval(() => {
+      if(this.num > 50){
+         this.changeCount();
+      }
+      return
+    }, 1000);
+  }
+  changeCount(){
+    console.log(this.num--); 
+    if(this.num == 50){
+      this.navCtrl.push('HomePage');
+      return
+    }
+  }
+  private num:number;
+  private src:string;
+  private date = new Date();
+  private nowtime = this.date.getTime();
+}
+

@@ -1,0 +1,50 @@
+<ion-content padding>
+<div *ngIf="rechargestate == 0" class="btnload">
+    <div class="icontext" style="padding: 5%;">
+        <!--<ion-spinner item-start name="dots"></ion-spinner>  -->
+         <img src="../../assets/icon/load1.gif" style="padding-left: 15%;padding-right: 15%">
+           <ion-spinner item-start name="dots"></ion-spinner>  
+         <div class="text">正在充值</div>
+    </div>
+</div>
+<div *ngIf="rechargestate == 1" class="btnload" style="display: block">
+   <div class="banner">
+      <img src="../../assets/icon/load/top.png">
+    </div>
+     <div class="bottom">
+        <div class="textgroup">
+            <!--<img src="../assets/icon/load/center.png" >-->
+        </div>
+        <div class="text" style="font-weight: bold;color:#252525;padding: 8% 5% 12% 5%;"> 
+        <!--正常充值的-->
+        </div>
+    
+        <div class="code">
+            <img src="../assets/icon/code.jpg">
+        </div>
+        <div class="text">如有任何疑问</div>
+        <div class="text">长按识别二维码添加客服微信<span style="font-weight: bold">hewo1001</span></div>
+        <div class="text" style="padding-bottom: 12%">或拨打客服电话<span style="font-weight: bold;">4000999812</span></div>
+    </div>
+</div> <!--非正常充值的，需要稍后通过公众号通知的-->
+<div *ngIf="rechargestate == 2" class="btnload" style="display: block">
+     <div class="banner">
+      <img src="../../assets/icon/load/top.png">
+    </div>
+     <div class="bottom">
+        <div class="textgroup">
+            <img src="../assets/icon/load/center.png" >
+        </div>
+        <div class="text" style="font-weight: bold;color:#252525;padding: 8% 5% 12% 5%;"> 
+        公众号会在复机成功的第一时间通知您
+        </div>
+    
+        <div class="code">
+            <img src="../assets/icon/code.jpg">
+        </div>
+        <div class="text">如有任何疑问</div>
+        <div class="text">长按识别二维码添加客服微信<span style="font-weight: bold">hewo1001</span></div>
+        <div class="text" style="padding-bottom: 12%">或拨打客服电话<span style="font-weight: bold">4000999812</span></div>
+    </div>
+</div>
+</ion-content>

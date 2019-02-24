@@ -1,0 +1,12 @@
+export namespace const_data
+{
+    //export const host_url = 'http://sub23.iwoyi.cn:6888'
+    //export const host_url = 'http://qx.iwoyi.cn:6888'
+    export const host_url = 'http://sub23.iwoyi.cn:6888';
+    
+    //"proxyUrl": "http://api.supaisong.cn/mall"
+    //export const mifi_url = 'http://qx.iwoyi.cn:4888';
+    export const imgsrcm = 'http://sub23m.iwoyi.cn/logo/sub23m.jpg';
+    // export const imgsrcm = 'http://sub23m.iwoyi.cn/logo/qx.jpg';
+   // export const imgsrcm = 'http://sub23m.iwoyi.cn/logo/qx.jpg';
+}
